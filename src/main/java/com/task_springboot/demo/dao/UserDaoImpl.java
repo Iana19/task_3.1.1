@@ -1,7 +1,6 @@
 package com.task_springboot.demo.dao;
 
 import com.task_springboot.demo.model.User;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;

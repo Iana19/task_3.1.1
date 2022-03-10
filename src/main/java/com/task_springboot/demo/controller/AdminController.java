@@ -5,7 +5,6 @@ import com.task_springboot.demo.model.Role;
 import com.task_springboot.demo.model.User;
 import com.task_springboot.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,9 +18,6 @@ import java.util.Set;
 public class AdminController {
     private final UserService userService;
     private final RoleDao roleDao;
-
-//    @Autowired
-//    PasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public AdminController(UserService userService, RoleDao roleDao) {
