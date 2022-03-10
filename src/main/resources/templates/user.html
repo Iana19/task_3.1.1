@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователи</title>
+    <style type="text/css">
+        TABLE {
+            width: 300px; /* Ширина таблицы */
+            border: 2px solid black; /* Рамка вокруг таблицы */
+            background: #5d9963; /* Цвет фона */
+            color: black; /* Цвет текста */
+        }
+        TD, TH {
+            text-align: center; /* Выравнивание по центру */
+            padding: 3px; /* Поля вокруг текста */
+        }
+        TH {
+            color: white; /* Цвет текста */
+            border-bottom: 4px double black; /* Двойная линия снизу */
+        }
+    </style>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <tr>Пользователи</tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>LAST NAME</th>
+        <th>AGE</th>
+    </tr>
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.lastname}"></td>
+        <td th:text="${user.age}"></td>
+    </tbody>
+</table>
+<p>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="logout"/>
+</form>
+</p>
+</body>
+</html>
