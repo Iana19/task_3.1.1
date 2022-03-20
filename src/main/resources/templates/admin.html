@@ -24,12 +24,13 @@
 <body>
 <table border="1">
     <thead>
-    <tr>Пользователи</tr>
+    <h1>Пользователи</h1>
     <br>
     </thead>
     <tbody>
     <tr>
         <th>ID</th>
+        <th>LOGIN</th>
         <th>NAME</th>
         <th>LAST NAME</th>
         <th>AGE</th>
@@ -37,6 +38,7 @@
     </tr>
     <tr th:each="user : ${usersList}">
         <td th:text="${user.id}"></td>
+        <td th:text="${user.login}"></td>
         <td th:text="${user.name}"></td>
         <td th:text="${user.lastname}"></td>
         <td th:text="${user.age}"></td>

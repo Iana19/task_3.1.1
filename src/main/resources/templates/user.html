@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Пользователи</title>
+    <title>Пользователь</title>
     <style type="text/css">
         TABLE {
             width: 300px; /* Ширина таблицы */
@@ -11,10 +11,12 @@
             background: #5d9963; /* Цвет фона */
             color: black; /* Цвет текста */
         }
+
         TD, TH {
             text-align: center; /* Выравнивание по центру */
             padding: 3px; /* Поля вокруг текста */
         }
+
         TH {
             color: white; /* Цвет текста */
             border-bottom: 4px double black; /* Двойная линия снизу */
@@ -24,19 +26,21 @@
 <body>
 <table border="1">
     <thead>
-    <tr>Пользователи</tr>
+    <h2>Пользователь</h2>
     </thead>
     <tbody>
     <tr>
         <th>ID</th>
+        <th>LOGIN</th>
         <th>NAME</th>
         <th>LAST NAME</th>
         <th>AGE</th>
     </tr>
-        <td th:text="${user.id}"></td>
-        <td th:text="${user.name}"></td>
-        <td th:text="${user.lastname}"></td>
-        <td th:text="${user.age}"></td>
+    <td th:text="${user.id}"></td>
+    <td th:text="${user.login}"></td>
+    <td th:text="${user.name}"></td>
+    <td th:text="${user.lastname}"></td>
+    <td th:text="${user.age}"></td>
     </tbody>
 </table>
 <p>

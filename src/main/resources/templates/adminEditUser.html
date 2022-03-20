@@ -9,6 +9,9 @@
     <form th:action="@{/admin/edit}" th:object="${user}" method="post">
         <p><input type="hidden" th:field="*{id}" /></p>
 
+        <p><label for="login">login</label> </p>
+        <p><input type="text" th:field="*{login}" id="login" value="login"></p>
+
         <p><label for="name">name</label></p>
         <p><input type="text" th:field="*{name}" id="name" value="name" required></p>
 

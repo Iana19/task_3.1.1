@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Component
 @Transactional
@@ -18,14 +19,12 @@ public class RoleDaoImpl implements RoleDao {
     public RoleDaoImpl() {
     }
 
-    @Transactional
     @Override
     public void save(Role role) {
         Role managed = entityManager.merge(role);
         entityManager.persist(managed);
     }
 
-    @Transactional
     @Override
     public void delete(Role role) {
         Role managed = entityManager.merge(role);
@@ -49,7 +48,6 @@ public class RoleDaoImpl implements RoleDao {
         }
     }
 
-    @Transactional
     public Role createRoleIfNotFound(String name, long id) {
         Role role = getRoleByName(name);
         if (role == null) {
@@ -57,6 +55,12 @@ public class RoleDaoImpl implements RoleDao {
             save(role);
         }
         return role;
+    }
+
+    @Override
+    public List<Role> getAllRoles() {
+        List<Role> resultSet = entityManager.createQuery("SELECT r FROM Role r", Role.class).getResultList();
+        return resultSet;
     }
 
 }

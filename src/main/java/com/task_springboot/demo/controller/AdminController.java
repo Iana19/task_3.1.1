@@ -1,7 +1,6 @@
 package com.task_springboot.demo.controller;
 
 import com.task_springboot.demo.dao.RoleDao;
-import com.task_springboot.demo.model.Role;
 import com.task_springboot.demo.model.User;
 import com.task_springboot.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/")
@@ -35,7 +32,7 @@ public class AdminController {
     }
 
     @GetMapping(value = "/admin/add")
-    public String addPage() {
+    public String addUser() {
         return "addUser";
     }
 
@@ -51,44 +48,16 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("adminEditUser");
         modelAndView.addObject("user", user);
-        HashSet<Role> setRoles = new HashSet<>();
-        Role roleOfAdmin = roleDao.createRoleIfNotFound("ADMIN", 1L);
-        Role roleOfUser = roleDao.createRoleIfNotFound("USER", 2L);
-        setRoles.add(roleOfAdmin);
-        setRoles.add(roleOfUser);
-        modelAndView.addObject("rolelist", setRoles);
+        modelAndView.addObject("rolelist", roleDao.getAllRoles());
         return modelAndView;
     }
 
     @PostMapping(value = "/admin/edit")
-    public String editUser(
-            @ModelAttribute("id") Long id,
-            @ModelAttribute("name") String name,
-            @ModelAttribute("password") String password,
-            @ModelAttribute("lastname") String lastname,
-            @ModelAttribute("age") byte age,
-            @RequestParam("roles") String[] roles
-    ) {
-        User user = userService.getById(id);
-        user.setName(name);
-        user.setLastname(lastname);
-        user.setAge(age);
-        if (!password.isEmpty()) {
-            user.setPassword(password);
-        }
-        Set<Role> setRoles = new HashSet<>();
-        for (String st : roles) {
-            if (st.equals("ADMIN")) {
-                Role roleOfAdmin = roleDao.createRoleIfNotFound("ADMIN", 1L);
-                setRoles.add(roleOfAdmin);
-            }
-            if (st.equals("USER")) {
-                Role roleOfUser = roleDao.createRoleIfNotFound("USER", 2L);
-                setRoles.add(roleOfUser);
-            }
-        }
-        user.setRoles(setRoles);
-        userService.save(user);
+    public String editUser(@ModelAttribute("id") Long id, @ModelAttribute("name") String name,
+            @ModelAttribute("password") String password, @ModelAttribute("lastname") String lastname,
+            @ModelAttribute("age") byte age, @RequestParam("roles") String[] roles, String login)
+    {
+        userService.implEditUser(id, name, lastname, age, password, roles, login);
         return "redirect:/admin";
     }
 

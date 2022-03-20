@@ -9,4 +9,6 @@ public interface UserService {
     void save(User user);
     void delete(User user);
     User getById(Long id);
+    User implEditUser(Long id, String name, String lastname, byte age, String password, String[] roles, String login);
+
 }

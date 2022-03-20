@@ -16,9 +16,18 @@ public class User implements UserDetails {
     private String name;
     private String lastname;
     private byte age;
+    private String login;
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
     public Set<Role> getRoles() {
         return roles;
@@ -77,10 +86,11 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public User(String name, String lastname, byte age) {
+    public User(String name, String lastname, byte age, String login) {
         this.name = name;
         this.lastname = lastname;
         this.age = age;
+        this.login = login;
     }
 
     public String getName() {
