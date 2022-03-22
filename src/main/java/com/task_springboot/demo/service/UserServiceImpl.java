@@ -8,12 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Service
+//21.03
+@Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
     private UserDao userDao;
     private RoleDao roleDao;
@@ -57,7 +60,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setName(name);
         user.setLastname(lastname);
         user.setAge(age);
-        //22.03
         user.setLogin(login);
         if (!password.isEmpty()) {
             user.setPassword(password);
